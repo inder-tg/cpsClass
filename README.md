@@ -19,8 +19,7 @@ In ```/Rscripts``` are the following files (the order here reflect the order in 
   4. ```rasterization_mosaicking.R``` rasterizes matrices which are output of ```bfast01_analysis.R``` and 
   then create mosaics from these files. See details in the preamble.
   
-  5. ```plots``` makes plots shown in _Section 4.3.2 "bfast01classify: clasificando tendencias"_. Should user
-  desires to replicate paper's output, some files are available upon request. Should user wants to use this
+  5. ```plots.R``` makes plots shown in _Section 4.3.2 "bfast01classify: clasificando tendencias"_. Should users desire to replicate paper's output, some files are available upon request. Should users want to utilize this
   script for their own purposes then some files must be created along the way. See instructions in preamble.
 
 
