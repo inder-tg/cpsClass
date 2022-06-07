@@ -11,17 +11,19 @@
 # --- NOTE
 # --- Each Landsat scene must be stored in a separate folder
 
-# --- Files and folders required ---
+# --- REQUIRED files and folders ---
 
 #'  inputDIR is a directory's name containing all folders with Landsat scenes. 
-#'           Below there is an example showing "/IMAGENES LANDSAT8", an external 
+#'           Below is an example showing "/IMAGENES LANDSAT8" created on an external 
 #'           unit storage used in this project.
 #'          
 #' outputDIR is a directory's name where the output of get_radCor_clouds_NDVI_crop()
-#'           will be saved.            
+#'           is be saved. Below is an example showing "NDVIS_25092021/" created on
+#'           an external unit storage used in this project.
 #'           
 #'    LABELS is a vector with characters or integers used to create filename
-#'           of get_radCor_clouds_NDVI_crop() output.
+#'           of get_radCor_clouds_NDVI_crop() output. See comments in the example 
+#'           below.
 #'         
       
 # --- auxiliary functions
@@ -34,9 +36,9 @@ addid <- function(id){
 
 # ---
 
-inputDIR <- "D:/LANDSAT8_PROCESO/IMAGENES LANDSAT8"
+inputDIR <- "D:/LANDSAT8_PROCESO/IMAGENES LANDSAT8" # change accordingly
 
-outputDIR <- "D:/LANDSAT8_PROCESO/NDVIS_25092021/"
+outputDIR <- "D:/LANDSAT8_PROCESO/NDVIS_25092021/" # change accordingly
 
 listDIRS <- list.dirs(path = mainDIR,
                       full.names = TRUE)
