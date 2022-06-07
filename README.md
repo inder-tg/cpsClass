@@ -8,13 +8,20 @@ In ```/Rscripts``` are the following files (the order here reflect the order in 
   [RStoolbox](https://cran.r-project.org/package=RStoolbox) to Landsat 8 OLI scenes. Allows the application of 
   a radiometric correction, clouds and cloud shadows mask creation, NDVI calculation and image cropping.
   
-  2. ```gapfill_process.R``` applies some functions of ```gapfill``` to impute missing values in NDVI Landsat 
-  images used in this project. Auxiliary folders must be created, see instructions in preamble.
+  2. ```gapfill_process.R``` applies some functions of [gapfill](https://cran.r-project.org/package=gapfill) 
+  to impute missing values in NDVI Landsat images used in this project. Auxiliary folders must be created, 
+  see instructions in preamble.
   
-  3. ```bfast01_analysis.R``` applies ```bfast01()``` to pixels of NDVI time series using parallel coding 
-  to speed-up. Auxiliary folders must be created, see instructions in preamble.
+  3. ```bfast01_analysis.R``` applies ```bfast01()``` of [bfast](https://cran.r-project.org/package=bfast) 
+  to pixels of NDVI time series using parallel coding to speed-up. Auxiliary folders must be created, see
+  instructions in preamble.
   
   4. ```rasterization_mosaicking.R``` rasterizes matrices which are output of ```bfast01_analysis.R``` and 
   then create mosaics from these files. See details in the preamble.
   
-  5. ```plots```
+  5. ```plots``` makes plots shown in _Section 4.3.2 "bfast01classify: clasificando tendencias"_. Should user
+  desires to replicate paper's output, some files are available upon request. Should user wants to use this
+  script for their own purposes then some files must be created along the way. See instructions in preamble.
+
+
+
