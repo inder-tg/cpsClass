@@ -41,6 +41,8 @@
 
 # --- Preparing auxiliary folders and files
 
+source("myFunctions.R")
+
 ####-----Images 2x2------####  split_replace
 
 ImagenesC2X2<- mixedsort(list.files(path =paste0(getwd(), "/gapFill_block1/data"), pattern = ".tif",

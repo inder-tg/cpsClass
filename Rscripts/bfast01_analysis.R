@@ -8,7 +8,7 @@
 # --- APPLIES bfast01 to pixels of dataset using parallel coding to speed-up
 # =============================================================================
 
-# --- Required Files and folders ---
+# --- REQUIRED Files and folders ---
 
 # --- dirDATA is a character with the full path to directory containing RDatas
 # ---         to analize. Below there is an example showing ndvi_gapfill_cells_interpol_rasterToPoints,
@@ -36,8 +36,6 @@
 # --- in getBreak() or lines 92-95 must be uncommented below, respectively; additionally,
 # --- new and corresponding directories must be created to save output.
 # --- 
-
-# --- Written by Inder Tecuapetla, March 8, 2022
 
 source("myFunctions.R")
 

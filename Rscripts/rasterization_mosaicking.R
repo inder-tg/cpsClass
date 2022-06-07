@@ -5,8 +5,8 @@
 # --- Carbajal-Domínguez and Valeria Montesinos-Chica.
 
 # =============================================================================
-# --- RASTERIZE matrices which are output from bfast01_analysis.R and then create
-# --- mosaics from these 2714 .tif's
+# --- RASTERIZE matrices which are the output of bfast01_analysis.R and then create
+# --- mosaics from these files
 # =============================================================================
 
 # --- NOTE
