@@ -8,13 +8,18 @@
 # --- MAKES plots shown in Section 4.3.2 "bfast01classify: clasificando tendencias"
 # =============================================================================
 
-# --- Required FILES
+# --- REQUIRED files
 
 # --- dirINPUT is a character with the full path to directory containing RDatas
 # ---          to analize. Below is an example showing ndvi_gapfill_cells_rasterToPoints,
 # ---          this folder contains 2714 RData files where NDVI Landsat-7 and Landsat 8
 # ---          OLI (previously) processed images were stored. No interpolation was 
-# ---          applied to the files stored in these RData files.
+# ---          applied to the files stored in these RData files. 
+
+dirINPUT <- "D:/Desktop_Huawei_2022/changePointsClassification/data/ndvi_gapfill_cells_rasterToPoints"
+cellsFILEs <- mixedsort(list.files(path=dirINPUT,
+                                   pattern=".RData",
+                                   full.names=TRUE))
 
 dirTIF_bw0p15 <- list.files(path=paste0(getwd(), "/TIF/bw0p15"),
                             full.names=TRUE)
@@ -29,11 +34,6 @@ stackTYPE <- raster(listTIF_bw0p15_interpol[2])
   
 stackYEARS <- raster(listTIF_bw0p15_interpol[3])
 
-# dirINPUT is an auxiliary directory where 
-dirINPUT <- "D:/Desktop_Huawei_2022/changePointsClassification/data/ndvi_gapfill_cells_rasterToPoints"
-cellsFILEs <- mixedsort(list.files(path=dirINPUT,
-                                   pattern=".RData",
-                                   full.names=TRUE))
 # ---
 
 TYPE6_SIGN0_interpol <- stackTYPE
