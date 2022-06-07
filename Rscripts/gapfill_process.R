@@ -34,6 +34,11 @@
 # "/data/filled/parallel_filled_progress.txt"
 # which are created automatically during the process
 
+# =============================================================================
+# --- Object names used below reflect the use given in this project but must be 
+# --- changed accordingly to fulfill users needs
+# =============================================================================
+
 # --- Preparing auxiliary folders and files
 
 ####-----Images 2x2------####  split_replace
