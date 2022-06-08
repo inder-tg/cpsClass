@@ -5,16 +5,27 @@
 # --- Carbajal-Domínguez and Valeria Montesinos-Chica.
 
 # =============================================================================
-# --- MAKES plots shown in Section 4.3.2 "bfast01classify: clasificando tendencias"
+# --- MAKES plots shown in Section "bfast01classify: clasificando tendencias"
 # =============================================================================
 
 # --- REQUIRED files
 
-# --- dirINPUT is a character with the full path to directory containing RDatas
-# ---          to analize. Below is an example showing ndvi_gapfill_cells_rasterToPoints,
-# ---          this folder contains 2714 RData files where NDVI Landsat-7 and Landsat 8
-# ---          OLI (previously) processed images were stored. No interpolation was 
-# ---          applied to the files stored in these RData files. 
+# ---      dirINPUT is a character with the full path to directory containing RDatas
+# ---               to analize. Below is an example showing ndvi_gapfill_cells_rasterToPoints,
+# ---               this folder contains 2714 RData files where NDVI Landsat-7 and Landsat 8
+# ---               OLI (previously) processed images were stored. No interpolation was 
+# ---               applied to the files stored in these RData files. 
+
+# --- dirTIF_bw0p15 is a character vector with filenames (SIGNmap.tif, TYPEmap.tif 
+# ---               and YEARSmap.tif) which contain rasters of significance trends,
+# ---               type trends and years with change-points obtained through 
+# ---               bfast01_analysis.R and rasterization_mosaicking.R
+
+# --- NOTE
+# --- There are copies of SIGmap.tif, TYPEmap.tif and YEARSmap.tif in folder /TIF
+# --- in Github repository
+
+source("myFunctions.R")
 
 dirINPUT <- "D:/Desktop_Huawei_2022/changePointsClassification/data/ndvi_gapfill_cells_rasterToPoints"
 cellsFILEs <- mixedsort(list.files(path=dirINPUT,
@@ -210,9 +221,9 @@ plot(bf_median)
 
 # ---
 
-save(pixel_type6_sign0, 
-     pixel_type8_sign2, 
-     pixel_type7_sign1, 
-     pixel_type5_sign0,
-     file = "C:/Users/inder/OneDrive/Desktop/cpsClassification/RData/pixels2plot.RData")
+# save(pixel_type6_sign0, 
+#      pixel_type8_sign2, 
+#      pixel_type7_sign1, 
+#      pixel_type5_sign0,
+#      file = "C:/Users/inder/OneDrive/Desktop/cpsClassification/RData/pixels2plot.RData")
 
