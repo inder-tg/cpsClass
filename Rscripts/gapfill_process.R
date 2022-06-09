@@ -41,7 +41,7 @@
 
 # --- Preparing auxiliary folders and files
 
-source("myFunctions.R")
+source( paste0(getwd(), "/Rscripts/myFunctions.R") )
 
 ####-----Images 2x2------####  split_replace
 

@@ -37,7 +37,7 @@
 # --- new and corresponding directories must be created to save output.
 # --- 
 
-source("myFunctions.R")
+source( paste0(getwd(), "/Rscripts/myFunctions.R") )
 
 dirDATA <- "D:/Desktop_Huawei_2022/changePointsClassification/data/ndvi_gapfill_cells_interpol_rasterToPoints"
 

@@ -10,14 +10,14 @@
 # =============================================================================
 
 # --- NOTE
-# --- This scripts cover the case 
+# --- This script cover the case 
 # --- Complementary gapfilling method: LINEAR interpolation
 # --- bfast01 parameters: bandwidth=0.15
 
 # --- In order for this script to cover other cases, the corresponding
 # --- folders must be created.
 
-# --- Required FOLDERS
+# --- REQUIRED folders
 
 # --- /RData/bw0p15 
 
@@ -32,7 +32,9 @@
 
 # -----------------------------------------------------------------------------
 
-# dirSNA contains the full path to a folder of cropped NDVI image without NAs 
+source( paste0(getwd(), "/Rscripts/myFunctions.R") )
+
+# dirSNA contains the full path to a folder with a cropped NDVI image without NAs 
 dirSNA <- "C:/Users/inder/OneDrive/Desktop/cpsClassification/data/SNA"
 
 listTIFFiles <- mixedsort(list.files(path=dirSNA,

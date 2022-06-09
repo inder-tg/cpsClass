@@ -8,222 +8,52 @@
 # --- MAKES plots shown in Section "bfast01classify: clasificando tendencias"
 # =============================================================================
 
-# --- REQUIRED files
+source( paste0(getwd(), "/Rscripts/myFunctions.R") )
+load( paste0( getwd(), "/RData/pixels2plot.RData") )
 
-# ---      dirINPUT is a character with the full path to directory containing RDatas
-# ---               to analize. Below is an example showing ndvi_gapfill_cells_rasterToPoints,
-# ---               this folder contains 2714 RData files where NDVI Landsat-7 and Landsat 8
-# ---               OLI (previously) processed images were stored. No interpolation was 
-# ---               applied to the files stored in these RData files. 
+# --- type6
 
-# --- dirTIF_bw0p15 is a character vector with filenames (SIGNmap.tif, TYPEmap.tif 
-# ---               and YEARSmap.tif) which contain rasters of significance trends,
-# ---               type trends and years with change-points obtained through 
-# ---               bfast01_analysis.R and rasterization_mosaicking.R
+pixel_type6_sign0_interpol <- na_interpolation(pixel_type6_sign0)
 
-# --- NOTE
-# --- There are copies of SIGmap.tif, TYPEmap.tif and YEARSmap.tif in folder /TIF
-# --- in Github repository
+pixel_type6_sign0_interpol_ts <- ts(pixel_type6_sign0_interpol, start = c(2014,1), 
+                                    end = c(2020,23), frequency = 23)
+bf <- bfast01(pixel_type6_sign0_interpol_ts)
 
-source("myFunctions.R")
+# --- type8
+clima_type8_sign2 <- climatology(pixel_type8_sign2,7,23)
+MAT_gapfill_median_type8_sign2 <- gapfill_climatology(climatology = clima_type8_sign2,
+                                                      box="median")
+pixel_type8_sign2_median <- c(t(MAT_gapfill_median_type8_sign2))
+pixel_type8_sign2_median_interpol <- na_interpolation(pixel_type8_sign2_median)
 
-dirINPUT <- "D:/Desktop_Huawei_2022/changePointsClassification/data/ndvi_gapfill_cells_rasterToPoints"
-cellsFILEs <- mixedsort(list.files(path=dirINPUT,
-                                   pattern=".RData",
-                                   full.names=TRUE))
+pixel_type8_sign2_median_ts <- ts(pixel_type8_sign2_median_interpol, 
+                                  start = c(2014,1), end = c(2020,23), 
+                                  frequency = 23)
 
-dirTIF_bw0p15 <- list.files(path=paste0(getwd(), "/TIF/bw0p15"),
-                            full.names=TRUE)
+bf_median <- bfast01(pixel_type8_sign2_median_ts)
 
-listTIF_bw0p15_interpol <- list.files(path=dirTIF_bw0p15[2], 
-                                    pattern=".tif",
-                                    full.names=TRUE)
+# --- type7
 
-stackSIGN <- raster(listTIF_bw0p15_interpol[1])
+pixel_type7_sign1_interpol <- na_interpolation(pixel_type7_sign1)
+pixel_type7_sign1_interpol_ts <- ts(pixel_type7_sign1_interpol, start = c(2014,1), 
+                                    end = c(2020,23), frequency = 23)
 
-stackTYPE <- raster(listTIF_bw0p15_interpol[2])
-  
-stackYEARS <- raster(listTIF_bw0p15_interpol[3])
+bf_0p23 <- bfast01(pixel_type7_sign1_interpol_ts, bandwidth = 0.23)
 
-# ---
+# --- type5
 
-TYPE6_SIGN0_interpol <- stackTYPE
-TYPE6_SIGN0_interpol[ stackSIGN !=0 ] <- NA
-TYPE6_SIGN0_interpol[ stackTYPE !=6 ] <- NA
-
-xy$x <- 175023.3; xy$y <- 2092906  
-
-CELL_TYPE6 <- 46*7+42
-
-cell <- LoadToEnvironment(cellsFILEs[CELL_TYPE6])$df
-
-xyCELL <- get_timeSeries_byClicking(c(xy$x, xy$y), 
-                                    df=cell)
-
-xy
-cell[xyCELL$coord,1:2]
-
-pixel_type6_sign0 <- cell[xyCELL$coord,3:ncol(cell)]
-
-clima <- climatology(pixel_type6_sign0,7,23)
+pixel <- pixel_type5_sign0
+clima <- climatology(pixel,7,23)
 MAT_gapfill_median <- gapfill_climatology(climatology = clima, box="median")
 pixel_median <- c(t(MAT_gapfill_median))
 pixel_median_interpol <- na_interpolation(pixel_median)
 pixel_median_ts <- ts(pixel_median_interpol, start = c(2014,1), 
                       end = c(2020,23), frequency = 23)
 
-pixel_interpol <- na_interpolation(pixel_type6_sign0)
+bf_median_0p23 <- bfast01(pixel_median_ts, bandwidth = 0.23)
 
-pixel_ts <- ts(pixel_type6_sign0, start = c(2014,1), end = c(2020,23), 
-               frequency = 23)
-
-pixel_interpol_ts <- ts(pixel_interpol, start = c(2014,1), end = c(2020,23), 
-                        frequency = 23)
-
-bf <- bfast01(pixel_interpol_ts)
-
-# interruption: decrease with positive break
-# --- to SAVE
-# --- took bfast on pixel interpolated
-par(mfrow=c(1,1), mar=c(4,4,2,1))
-plot(bf)
-
-
-# ---
-
-TYPE8_SIGN2_interpol <- stackTYPE
-TYPE8_SIGN2_interpol[ stackSIGN !=2 ] <- NA
-TYPE8_SIGN2_interpol[ stackTYPE !=8 ] <- NA
-
-xy$x <- 158683.4; xy$y <- 2047435
-
-CELL_TYPE8 <- 46*36+26
-
-cell <- LoadToEnvironment(cellsFILEs[CELL_TYPE8])$df
-
-xyCELL <- get_timeSeries_byClicking(c(xy$x, xy$y), 
-                                    df=cell)
-
-xy
-cell[xyCELL$coord,1:2]
-
-pixel_type8_sign2 <- cell[xyCELL$coord,3:ncol(cell)]
-
-clima <- climatology(pixel_type8_sign2,7,23)
-MAT_gapfill_median <- gapfill_climatology(climatology = clima, box="median")
-pixel_median <- c(t(MAT_gapfill_median))
-pixel_median_interpol <- na_interpolation(pixel_median)
-pixel_median_ts <- ts(pixel_median_interpol, start = c(2014,1), 
-                      end = c(2020,23), frequency = 23)
-
-pixel_interpol <- na_interpolation(pixel_type8_sign2)
-
-pixel_ts <- ts(pixel_type8_sign2, start = c(2014,1), end = c(2020,23), 
-               frequency = 23)
-
-pixel_interpol_ts <- ts(pixel_interpol, start = c(2014,1), end = c(2020,23), 
-                        frequency = 23)
-
-bf_median <- bfast01(pixel_median_ts)
-
-# reversal: decrease to increase
-# --- to SAVE
-# --- took bfast on pixel interpolated
-par(mfrow=c(1,1), mar=c(4,4,2,1))
-plot(bf_median)
-
-
-# ---
-
-TYPE7_SIGN1_interpol <- stackTYPE
-TYPE7_SIGN1_interpol[ stackSIGN !=1 ] <- NA
-TYPE7_SIGN1_interpol[ stackTYPE !=7 ] <- NA
-
-xy$x <- 142978.5; xy$y <- 2036252
-
-CELL_TYPE7 <- 46*43+11
-
-cell <- LoadToEnvironment(cellsFILEs[CELL_TYPE7])$df
-
-xyCELL <- get_timeSeries_byClicking(c(xy$x, xy$y), 
-                                    df=cell)
-
-xy
-cell[xyCELL$coord,1:2]
-
-pixel_type7_sign1 <- cell[xyCELL$coord,3:ncol(cell)]
-
-clima <- climatology(pixel_type7_sign1,7,23)
-MAT_gapfill_median <- gapfill_climatology(climatology = clima, box="median")
-pixel_median <- c(t(MAT_gapfill_median))
-pixel_median_interpol <- na_interpolation(pixel_median)
-pixel_median_ts <- ts(pixel_median_interpol, start = c(2014,1), 
-                      end = c(2020,23), frequency = 23)
-
-pixel_interpol <- na_interpolation(pixel_type7_sign1)
-
-pixel_ts <- ts(pixel_type7_sign1, start = c(2014,1), end = c(2020,23), 
-               frequency = 23)
-
-pixel_interpol_ts <- ts(pixel_interpol, start = c(2014,1), end = c(2020,23), 
-                        frequency = 23)
-
-bf_0p23 <- bfast01(pixel_interpol_ts, bandwidth = 0.23)
-
-# interruption: increase with negative break
-# --- to SAVE
-# --- took bfast on pixel interpolated
-par(mfrow=c(1,1), mar=c(4,4,2,1))
-plot(bf_0p23)
-
-# ---
-
-TYPE5_SIGN0_interpol <- stackTYPE
-TYPE5_SIGN0_interpol[ stackSIGN != 0 ] <- NA
-TYPE5_SIGN0_interpol[ stackTYPE != 5 ] <- NA
-
-# xy <- locator() # 
-xy$x <- 137823.7; xy$y <- 2069144
-
-CELL_TYPE5 <- 46*22+6
-
-cell <- LoadToEnvironment(cellsFILEs[CELL_TYPE5])$df
-
-xyCELL <- get_timeSeries_byClicking(c(xy$x, xy$y), 
-                                    df=cell)
-
-xy
-cell[xyCELL$coord,1:2]
-
-pixel_type5_sign0 <- cell[xyCELL$coord,3:ncol(cell)]
-
-clima <- climatology(pixel_type5_sign0,7,23)
-MAT_gapfill_median <- gapfill_climatology(climatology = clima, box="median")
-pixel_median <- c(t(MAT_gapfill_median))
-pixel_median_interpol <- na_interpolation(pixel_median)
-pixel_median_ts <- ts(pixel_median_interpol, start = c(2014,1), 
-                      end = c(2020,23), frequency = 23)
-
-pixel_interpol <- na_interpolation(pixel_type5_sign0)
-
-pixel_ts <- ts(pixel_type5_sign0, start = c(2014,1), end = c(2020,23), 
-               frequency = 23)
-
-pixel_interpol_ts <- ts(pixel_interpol, start = c(2014,1), end = c(2020,23), 
-                        frequency = 23)
-
-bf_median <- bfast01(pixel_median_ts)
-
-# interruption: increase with negative break
-# --- to SAVE
-par(mfrow=c(1,1), mar=c(4,4,2,1))
-plot(bf_median)
-
-# ---
-
-# save(pixel_type6_sign0, 
-#      pixel_type8_sign2, 
-#      pixel_type7_sign1, 
-#      pixel_type5_sign0,
-#      file = "C:/Users/inder/OneDrive/Desktop/cpsClassification/RData/pixels2plot.RData")
-
+par(mfrow=c(2,2), mar=c(2,2,1,1), adj = 0)
+plot(bf, ylab="", xlab="", main="A")
+plot(bf_median, ylab="", xlab="", main="B")
+plot(bf_median_0p23, ylab="", xlab="", main="C")
+plot(bf_0p23, ylab="", xlab="", main="D")

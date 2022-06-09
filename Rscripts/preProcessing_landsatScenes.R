@@ -36,7 +36,7 @@ addid <- function(id){
 
 # ---
 
-source("myFunctions.R")
+source( paste0(getwd(), "/Rscripts/myFunctions.R") )
 
 inputDIR <- "D:/LANDSAT8_PROCESO/IMAGENES LANDSAT8" # change accordingly
 
