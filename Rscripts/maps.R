@@ -8,6 +8,9 @@
 # --- MAKES visualizations shown in Section "RESULTADOS"
 # =============================================================================
 
+# --- NOTE
+# --- Auxiliary files are in /RData
+
 source( paste0(getwd(), "/Rscripts/myFunctions.R") )
 load( paste0( getwd(), "/RData/SHP.RData") )
 

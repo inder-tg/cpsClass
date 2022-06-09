@@ -8,6 +8,9 @@
 # --- MAKES plots shown in Section "bfast01classify: clasificando tendencias"
 # =============================================================================
 
+# --- NOTE
+# --- Auxiliary files are in /RData
+
 source( paste0(getwd(), "/Rscripts/myFunctions.R") )
 load( paste0( getwd(), "/RData/pixels2plot.RData") )
 
