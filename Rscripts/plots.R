@@ -12,7 +12,6 @@ source( paste0(getwd(), "/Rscripts/myFunctions.R") )
 load( paste0( getwd(), "/RData/pixels2plot.RData") )
 
 # --- type6
-
 pixel_type6_sign0_interpol <- na_interpolation(pixel_type6_sign0)
 
 pixel_type6_sign0_interpol_ts <- ts(pixel_type6_sign0_interpol, start = c(2014,1), 
