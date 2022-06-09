@@ -35,7 +35,7 @@
 # which are created automatically during the process
 
 # =============================================================================
-# --- Object names used below reflect the use given in this project but must be 
+# --- Object names used below reflect made sense for this project, but must be 
 # --- changed accordingly to fulfill users needs
 # =============================================================================
 
