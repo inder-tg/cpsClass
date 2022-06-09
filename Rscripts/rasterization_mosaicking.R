@@ -84,15 +84,15 @@ listTIFFiles <- mixedsort(list.files(path=dirSNA,
                                      pattern=".tif",
                                      full.names=TRUE))
 
-listTYPEFiles <- mixedsort(list.files(path=paste0(getwd(),"/RData/bw0p23/rawData/TYPE"),
+listTYPEFiles <- mixedsort(list.files(path=paste0(getwd(),"/RData/bw0p15/interpol/TYPE"),
                                     pattern=".RData",
                                     full.names=TRUE))
 
-# listYEARSFiles <- mixedsort(list.files(path=paste0(getwd(),"/RData/bw0p23/rawData/YEARS"),
+# listYEARSFiles <- mixedsort(list.files(path=paste0(getwd(),"/RData/bw0p15/interpol/YEARS"),
 #                                       pattern=".RData",
 #                                       full.names=TRUE))
 
-# listSIGNFiles <- mixedsort(list.files(path=paste0(getwd(),"/RData/bw0p23/rawData/SIGN"),
+# listSIGNFiles <- mixedsort(list.files(path=paste0(getwd(),"/RData/bw0p15/interpol/SIGN"),
 #                                       pattern=".RData", 
 #                                       full.names=TRUE))
 
