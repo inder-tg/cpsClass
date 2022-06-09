@@ -25,6 +25,8 @@ In ```/Rscripts``` are the following files (the order here reflect the order in 
   
   6. ```maps.R``` makes visualizations shown in _Section "RESULTADOS"_. See further instructions in preamble.
   
+  7. ```barplots.R``` makes barplots shown in _Section "RESULTADOS"_. See further instructions in preamble.
+  
 # DISCLAIMER
 
 Object names used in these scripts made sense for us and our analysis, but must be changed accordingly
