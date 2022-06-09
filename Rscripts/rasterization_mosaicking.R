@@ -34,6 +34,49 @@
 
 source( paste0(getwd(), "/Rscripts/myFunctions.R") )
 
+matrixToRaster_test <- function(matrix, raster=NULL, projection=NULL){
+  
+  if(ncol(matrix)==3){
+    if(is.null(projection)){
+      stop('projection must be provided')
+    } 
+    
+    x <- matrix[,1]
+    y <- matrix[,2]
+    values <- matrix[,3]
+    PROJ <- projection
+    
+  } else {
+    
+    if(is.null(RASTER)){
+      stop('RASTER must be provided')
+    }
+    
+    rasterTable <- data.frame(rasterToPoints(RASTER))
+    x <- rasterTable$x
+    y <- rasterTable$y
+    values <- c(matrix)
+    PROJ <- raster::projection(RASTER)
+  }
+  
+  # rasterTable <- data.frame(rasterToPoints(RASTER))
+  
+  df <- data.frame(x=x, y=y, values=values)
+  
+  sp::coordinates(df) <- ~ x + y
+  
+  sp::gridded(df) <- TRUE
+  
+  raster_df <- raster(df)
+  
+  raster::projection(raster_df) <- PROJ
+  
+  raster_df
+}
+
+
+# -----------------------------------------------------------------------------
+
 # dirSNA contains the full path to a folder with a cropped NDVI image without NAs 
 dirSNA <- "C:/Users/inder/OneDrive/Desktop/cpsClassification/data/SNA"
 
