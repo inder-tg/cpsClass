@@ -25,6 +25,8 @@ library(sp)
 library(gapfill)
 library(RColorBrewer)
 
+library(ggpubr)
+library(tmap)
 
 # --- Auxiliay functions ---
 
